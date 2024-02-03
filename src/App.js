@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import ProductList from './components/ProductList';
+import ProductDetail from './components/ProductDetails';
+import ShoppingCart from './components/ShoppingCart';
+import products from './data';
+import './styles.css';
 
-function App() {
+const App = () => {
+  const [cartItems, setCartItems] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    const updatedCart = cartItems.filter((item) => item.id !== productId);
+    setCartItems(updatedCart);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar cartItemCount={cartItems.length} setFilteredProducts={setFilteredProducts} products={products} />
+        <Routes>
+          <Route path="/" element={<ProductList addToCart={addToCart} products={filteredProducts.length > 0 ? filteredProducts : products} />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/cart" element={<ShoppingCart cartItems={cartItems} removeFromCart={removeFromCart} />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
