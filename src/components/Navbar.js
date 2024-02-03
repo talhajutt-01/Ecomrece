@@ -1,21 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ cartItemCount, products, setFilteredProducts }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (event) => {
-    const query = event.target.value;
-    setSearchQuery(query);
-
-    // Filter products based on the search query
-    const filteredProducts = products.filter((product) =>
-      product.title.toLowerCase().includes(query.toLowerCase())
-    );
-
-    // Set filtered products in the parent component
-    setFilteredProducts(filteredProducts);
-  };
+const Navbar = ({ cartItemCount, }) => {
+  
 
   return (
     <div>
@@ -39,16 +26,6 @@ const Navbar = ({ cartItemCount, products, setFilteredProducts }) => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-            </form>
           </div>
         </div>
       </nav>

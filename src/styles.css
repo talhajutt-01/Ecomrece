@@ -94,3 +94,7 @@ body {
     font-size: 12px;
   }
   
+  ::selection {
+    color:  #ff0000; 
+    background: linear-gradient(#ff0000, #ff7b00); 
+  }
