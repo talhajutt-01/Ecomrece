@@ -26,7 +26,7 @@ const ProductList = ({ addToCart }) => {
       <Route
         path="/*"
         element={
-          <div className="product-list">
+          <div className="product-list mt-4">
             {currentProducts.map((product) => (
               <Product key={product.id} {...product} addToCart={addToCart} />
             ))}

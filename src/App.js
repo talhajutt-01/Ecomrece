@@ -7,6 +7,7 @@ import ShoppingCart from './components/ShoppingCart';
 import products from './data';
 import './styles.css';
 import Hero from './components/Hero';
+import Footer from './components/Footer';
 
 const App = () => {
   // Initialize cartItems as an empty array
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/cart" element={<ShoppingCart cartItems={cartItems} removeFromCart={removeFromCart} />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
